@@ -25,6 +25,8 @@ vim.opt.undofile = true
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+vim.opt.autoread = true
+
 -- Search and Pattern Matching
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -38,8 +40,8 @@ vim.opt.splitbelow = true
 
 -- Disable next line comment
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  callback = function()
-    vim.opt_local.formatoptions:remove({ "c", "r", "o" })
-  end,
+	pattern = "*",
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+	end,
 })
