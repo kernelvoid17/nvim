@@ -25,7 +25,7 @@ vim.opt.undofile = true
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.opt.autoread = true
+-- vim.opt.autoread = true
 
 -- Search and Pattern Matching
 vim.opt.ignorecase = true

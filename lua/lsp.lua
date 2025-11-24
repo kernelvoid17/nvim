@@ -150,47 +150,47 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-	callback = function(args)
-		local filetype = vim.bo[args.buf].filetype
-		local filepath = vim.api.nvim_buf_get_name(args.buf)
-		
-		if filetype == "python" then
-			-- Save cursor position
-			local view = vim.fn.winsaveview()
-			
-			-- Run black and capture output
-			local output = vim.fn.system({ "black", "--quiet", filepath })
-			local exit_code = vim.v.shell_error
-			
-			if exit_code == 0 then
-				-- Reload buffer from disk without creating undo history
-				vim.cmd("silent! edit!")
-				-- Restore cursor position
-				vim.fn.winrestview(view)
-			else
-				vim.notify("Black formatting failed: " .. output, vim.log.levels.ERROR)
-			end
-		elseif filetype == "rust" then
-			vim.fn.system({ "rustfmt", filepath })
-			if vim.v.shell_error == 0 then
-				vim.cmd("silent! edit")
-			end
-		elseif filetype == "c" or filetype == "cpp" then
-			vim.fn.system({ "clang-format", "-i", filepath })
-			if vim.v.shell_error == 0 then
-				vim.cmd("silent! edit")
-			end
-		elseif filetype == "lua" then
-			vim.fn.system({ "stylua", filepath })
-			if vim.v.shell_error == 0 then
-				vim.cmd("silent! edit")
-			end
-		elseif filetype == "javascript" or filetype == "typescript" or filetype == "html" or filetype == "css" then
-			vim.fn.system({ "prettier", "--write", filepath })
-			if vim.v.shell_error == 0 then
-				vim.cmd("silent! edit")
-			end
-		end
-	end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+-- 	callback = function(args)
+-- 		local filetype = vim.bo[args.buf].filetype
+-- 		local filepath = vim.api.nvim_buf_get_name(args.buf)
+--
+-- 		if filetype == "python" then
+-- 			-- Save cursor position
+-- 			local view = vim.fn.winsaveview()
+--
+-- 			-- Run black and capture output
+-- 			local output = vim.fn.system({ "black", "--quiet", filepath })
+-- 			local exit_code = vim.v.shell_error
+--
+-- 			if exit_code == 0 then
+-- 				-- Reload buffer from disk without creating undo history
+-- 				vim.cmd("silent! edit!")
+-- 				-- Restore cursor position
+-- 				vim.fn.winrestview(view)
+-- 			else
+-- 				vim.notify("Black formatting failed: " .. output, vim.log.levels.ERROR)
+-- 			end
+-- 		elseif filetype == "rust" then
+-- 			vim.fn.system({ "rustfmt", filepath })
+-- 			if vim.v.shell_error == 0 then
+-- 				vim.cmd("silent! edit")
+-- 			end
+-- 		elseif filetype == "c" or filetype == "cpp" then
+-- 			vim.fn.system({ "clang-format", "-i", filepath })
+-- 			if vim.v.shell_error == 0 then
+-- 				vim.cmd("silent! edit")
+-- 			end
+-- 		elseif filetype == "lua" then
+-- 			vim.fn.system({ "stylua", filepath })
+-- 			if vim.v.shell_error == 0 then
+-- 				vim.cmd("silent! edit")
+-- 			end
+-- 		elseif filetype == "javascript" or filetype == "typescript" or filetype == "html" or filetype == "css" then
+-- 			vim.fn.system({ "prettier", "--write", filepath })
+-- 			if vim.v.shell_error == 0 then
+-- 				vim.cmd("silent! edit")
+-- 			end
+-- 		end
+-- 	end,
+-- })
