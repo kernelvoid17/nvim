@@ -1,4 +1,7 @@
 -- Basic Editor Options
+-- vim.opt.number = true
+-- vim.opt.relativenumber = true
+-- vim.opt.statuscolumn = "%l  "
 vim.opt.number = false
 vim.opt.relativenumber = false
 vim.opt.showmode = true

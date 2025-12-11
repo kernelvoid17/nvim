@@ -1,4 +1,4 @@
-require 'colors'
+require 'fuckcolors'
 require 'options'
 require 'keymaps'
 require 'lsp'

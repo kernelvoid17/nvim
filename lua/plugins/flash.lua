@@ -5,7 +5,7 @@ return {
   opts = { prompt = { enabled = false } },
   keys = {
     {
-      'f',
+      's',
       mode = { 'n', 'x', 'o' },
       function()
         require('flash').jump()
